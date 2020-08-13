@@ -8,7 +8,8 @@ public class RetoCuatro {
         Double d = scan.nextDouble();
         String s=" ";
         s= scan.nextLine();
-        s+=scan.nextLine();
+        System.out.println("Mensaje: [" +s+"]");
+        s=scan.nextLine();
         scan.close();
         System.out.println("String: " + s);
         System.out.println("Double: " + d);
