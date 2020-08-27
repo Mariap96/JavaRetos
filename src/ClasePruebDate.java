@@ -30,20 +30,15 @@ class ResultDos {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat formatByCompare = new SimpleDateFormat("EEE, MMM d yyyy");
-        formatByCompare.format(date);
-        String s=date.toString();
+        SimpleDateFormat formatByCompare = new SimpleDateFormat("EEE MMM d yyyy");
+        String s=formatByCompare.format(date);
         return s;
     }
 
     public static String findDay(int month, int day, int year) {
         String[] r = formatDate(month,day,year).split(" ", 5);
         String dayofweek;
-        List<String> list = new ArrayList<>();
-        for (String a : r) {
-            list.add(a);
-        }
-        String dayweek = list.get(0);
+        String dayweek = r[0];
         switch (dayweek) {
             case "Mon":
                 dayofweek = "MONDAY";
@@ -84,8 +79,11 @@ public class ClasePruebDate {
 
         int year = scn.nextInt();
 
+        String xxx = null;//ResultDos.formatDate(8,21,2020);
+        System.out.println(xxx);
+        assert ("Fri Aug 21 2020".equals(xxx));
+
         String res = ResultDos.findDay(month, day, year);
         System.out.println(res);
-
     }
 }

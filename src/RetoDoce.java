@@ -17,42 +17,7 @@ class Result {
      */
 
     public static String findDay(int month, int day, int year) {
-        Calendar calendar= Calendar.getInstance();
-        calendar.set(month, day,year);
-        String s = calendar.getTime().toString();
-        String [] r = s.split(" ",5);
-        String dayofweek;
-        List<String> list = new ArrayList<>();
-        for (String a:r) {
-            list.add(a);
-        }
-        String date = list.get(0);
-        switch (date){
-            case "Mon":
-                dayofweek="MONDAY";
-                break;
-            case "Tue":
-                dayofweek = "TUESDAY";
-                break;
-            case "Wed":
-                dayofweek = "WEDNESDAY";
-                break;
-            case "Thu":
-                dayofweek = "THURSDAY";
-                break;
-            case "Fri":
-                dayofweek = "FRIDAY";
-                break;
-            case "Sat":
-                dayofweek = "SATURDAY";
-                break;
-            case "Sun":
-                dayofweek = "SUNDAY";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + date);
-        }
-        return dayofweek;
+        return LocalDate.of(year,month,day).getDayOfWeek().name();
     }
 
 
@@ -60,24 +25,15 @@ class Result {
 
 public class RetoDoce {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scn = new Scanner(System.in);
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        int month = scn.nextInt();
 
-        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+        int day = scn.nextInt();
 
-        int month = Integer.parseInt(firstMultipleInput[0]);
+        int year = scn.nextInt();
 
-        int day = Integer.parseInt(firstMultipleInput[1]);
-
-        int year = Integer.parseInt(firstMultipleInput[2]);
-
-        String res = Result.findDay(month, day, year);
-
-        bufferedWriter.write(res);
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
+        String res = ResultDos.findDay(month, day, year);
+        System.out.println(res);
     }
 }
