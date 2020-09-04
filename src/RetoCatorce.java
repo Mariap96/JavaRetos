@@ -7,6 +7,7 @@ public class RetoCatorce {
         Iterator it=mylist.iterator();
         while(it.hasNext()){
             Object element =it.next();
+            System.out.println("Se imprime el elemento" + element);
             if(element instanceof String)
             break;
         }
